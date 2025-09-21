@@ -1,8 +1,23 @@
  import React from 'react'
  import { useState} from 'react'
+ import axios from "axios";
+
 const Login = () => {
   const[emailId, setEmailId]= useState("");
   const[password, setPassword]= useState("");
+
+  const handleLogin = async()=>{
+    try {
+      const res = await axios.post("http://localhost:7777/login",{
+        emailId,
+        password
+      });
+
+    }catch(err){
+      console.log(err);
+    }
+  };
+
   return (
      <div className=" flex justify-center my-10">
     <div className="card bg-base-300 w-96 shadow-sm">
@@ -25,7 +40,7 @@ const Login = () => {
 </div>
     
     <div className="card-actions justify-center">
-      <button className="btn btn-primary">Login</button>
+      <button className="btn btn-primary" onClick={handleLogin}>Login</button>
     </div>
   </div>
 </div>
